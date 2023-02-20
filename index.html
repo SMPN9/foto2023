@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Asesmen Nasional</title>
+
+    <script>var base_url = '/';</script>
+
+    
+    <link rel="stylesheet" href="/foto2022/kertasF4.css">
+
+   
+</head>
+<body>	<style>
+		.page {
+			padding: 1cm;
+		}
+
+		td {
+			padding: 5px;
+		}
+img { width:250px;padding:5px}
+ 
+
+
+
+
+	</style>    	<div class="page">
+			<center>
+		 
+             <label style="font-size:30px" > Click Foto untuk Download:</label>
+			<div id="foto"></div>
+			</center>
+		</div>    
+    <script>
+     var ft=document.getElementById("foto")
+	 var fg=''
+	 for (var i=1; i<14;i++){
+	  fg=fg+'<img src="https://smpn9.github.io/foto2022/'+i+'.jpg" onclick="go(this.src)" />' 
+	 
+	 }
+	 
+	 ft.innerHTML=fg;
+	
+function go(lok){
+ var gg= lok.replace(/^.*[\\\/]/," ")
+ var nmf= gg.replaceAll("%2"," ")
+ 
+fetch(lok)
+  .then(resp => resp.blob())
+  .then(blob => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download =nmf
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+      })
+  .catch(() =>alert('Gagal Download')); 
+  }	
+	
+	
+	
+    </script></body>
+</html>
